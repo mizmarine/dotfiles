@@ -8,17 +8,39 @@ endif
 
 " ここにインストールしたいプラグインのリストを書く
 
+
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neosnippet'
 
+" system
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
+NeoBundle 'Shougo/vimshell.vim'
+NeoBundle 'thinca/vim-quickrun'
+
+" git
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'gregsexton/gitv'
+
+
+" filer
 NeoBundle 'Shougo/unite.vim'
 NeoBundle "scrooloose/nerdtree"
 
+" statusline
+NeoBundle "itchyny/lightline.vim"
 
 " edit
 NeoBundle "tpope/vim-surround"
 NeoBundle "mattn/emmet-vim" "Zen-coding
 NeoBundle "scrooloose/nerdcommenter"
+NeoBundle "autodate.vim"
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
@@ -29,11 +51,14 @@ NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
-NeoBundle "tpope/vim-markdown" "markdown
+NeoBundle "plasticboy/vim-markdown" "markdown
 NeoBundle "jelera/vim-javascript-syntax" "javascript
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
 NeoBundle "groenewege/vim-less" "less
+NeoBundle "tikhomirov/vim-glsl" "GLSL
+NeoBundle "sophacles/vim-processing" "processing(.pde)
+NeoBundle "sudar/vim-arduino-syntax" "arduino(.ino)
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
@@ -63,13 +88,13 @@ endif
 
 " スワップファイル設定
 set swapfile
-set directory=~/_vim/swp
+set directory=~/.vim/swp
 
 " viminfoを作成しない
 " set viminfo=
 
 " クリップボードを共有
-set clipboard+=unnamed
+set clipboard=unnamed,autoselect
 
 " 8進数を無効にする。<C-a>,<C-x>に影響する
 set nrformats-=octal
@@ -214,6 +239,7 @@ else
   set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
 endif
 
+
 " FencB() : カーソル上の文字コードをエンコードに応じた表示にする
 function! FencB()
   let c = matchstr(getline('.'), '.', col('.') - 1)
@@ -302,24 +328,30 @@ nmap <silent> <Esc><Esc> :nohlsearch<CR>
 " ノーマルモードでも改行可能
 nnoremap <CR> i<CR><ESC>
 
-" 折り畳み操作
+" foldingオペレーション
 noremap [space] <Nop>
 nmap <Space> [space]
 
+" 別レベルへの遷移
 noremap [space]j zj
 noremap [space]k zk
+" 同一レベルでの上下遷移
 noremap [space]h ]z
 noremap [space]l [z
+" folding:close
 noremap [space]c zc
-noremap [space]o zO
+" folding:toggle
 noremap [space]a za
+" folding:all close
 noremap [space]m zM
+" folding:all open
+noremap [space]o zO
 noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 
 "------------------------
-" insert 
+" insert
 "------------------------
 "かっこ入力時，中に戻る
 inoremap {} {}<Left>
@@ -339,12 +371,14 @@ inoremap <C-G> <BS>
 " insertmode抜ける
 inoremap <silent> jj <ESC>
 inoremap <silent> kk <ESC>
+inoremap <silent> <C-c> <ESC>
 
 " insertmodeでも簡単な移動ができるようにする
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+"inoremap <C-j> <Down>
+"inoremap <C-k> <Up>
+"inoremap <C-h> <Left>
+"inoremap <C-l> <Right>
+
 inoremap <C-e> <END>
 inoremap <C-a> <HOME>
 nnoremap <C-e> <END>
@@ -352,7 +386,8 @@ nnoremap <C-a> <HOME>
 vnoremap <C-e> <END>
 vnoremap <C-a> <HOME>
 
-
+" indentの1line調整
+"inoremap <C->> <ESC>v<<ESC>i
 
 "------------------------
 " shortcut 
@@ -416,6 +451,12 @@ function! s:GetHighlight(hi)
   return hl
 endfunction
 
+" fileをchromeでひらく
+command! MkdChrome call MkdChrome()
+function! MkdChrome()
+    call system('google-chrome-stable'.expand('%'))
+endfunction
+
 """"""""""""""""""""""""""""""
 " 全角スペースを表示
 """"""""""""""""""""""""""""""
@@ -448,6 +489,24 @@ endif
 "   "autochdirが存在しないが、カレントディレクトリを移動したい場合
 "   au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 " endif
+
+"-------------------------
+" todo List
+"-------------------------
+abbreviate ti - []
+
+nnoremap <buffer> <Leader><Leader> :call ToggleCheckbox()<CR>
+
+function! ToggleCheckbox()
+  let l:line = getline('.')
+  if l:line =~ '\-\s\[\s\]'
+    let l:result = substitute(l:line, '-\s\[\s\]', '- [x]', '')
+    call setline('.', l:result)
+  elseif l:line =~ '\-\s\[x\]'
+    let l:result = substitute(l:line, '-\s\[x\]', '- [ ]', '')
+    call setline('.', l:result)
+  end
+endfunction
 
 "------------------------
 " plugin
@@ -523,4 +582,58 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 " inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 
+" ***********************
+" neosnippet
+" ***********************
 
+"imap <C-k> <Plug>(neosnippet_expand_or_jump)
+
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" ***********************
+" vim-coffee-script
+" ***********************
+" autocmd BufWritePost *.coffee silent make!
+autocmd BufWritePost *.coffee silent make! --bare
+
+
+" ***********************
+" vim-quickrun
+" ***********************
+set splitright
+nmap <C-r> :QuickRun<CR>
+
+let g:quickrun_config = {}
+let g:quickrun_config.processing = {
+        \     'command':'processing-java',
+        \     'exec':'%c --sketch=$PWD/ --output=/Library/Processing --run --force',
+        \   }
+
+
+" ***********************
+" nerdcommenter 
+" ***********************
+nmap <Leader>/ <Plug>NERDCommenterToggle
+
+
+
+" ***********************
+" autodate.vim
+" ***********************
+let autodate_format="%Y_%m_%d_%T"
+
+
+
+" end of .vimrc
