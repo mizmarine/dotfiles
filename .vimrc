@@ -28,7 +28,6 @@ NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'gregsexton/gitv'
 
-
 " filer
 NeoBundle 'Shougo/unite.vim'
 NeoBundle "scrooloose/nerdtree"
@@ -52,13 +51,15 @@ NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
-NeoBundle "jelera/vim-javascript-syntax" "javascript
+NeoBundle 'jelera/vim-javascript-syntax' "javascript
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
 NeoBundle "groenewege/vim-less" "less
 NeoBundle "tikhomirov/vim-glsl" "GLSL
 NeoBundle "sophacles/vim-processing" "processing(.pde)
 NeoBundle "sudar/vim-arduino-syntax" "arduino(.ino)
+NeoBundle "jcf/vim-latex" "tex
+NeoBundle "rodjek/vim-puppet" " puppet
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
@@ -73,6 +74,7 @@ NeoBundle "altercation/vim-colors-solarized"
 " behave mswin
 
 " ファイルの上書きの前にバックアップを作る/作らない
+" B
 " set writebackupを指定してもオプション 'backup' がオンでない限り、
 " バックアップは上書きに成功した後に削除される。
 set nowritebackup
@@ -193,13 +195,18 @@ set cursorline
 set expandtab
 
 " tabスペース数
-set tabstop=2
+set tabstop=4
+set softtabstop=0
 
 " 自動的にインデントする
 set autoindent
 
 " オートインデント数
-set shiftwidth=2
+set shiftwidth=4
+
+"autocmd! FileType javascript setlocal sw=4 ts=4 sts=0
+autocmd! FileType html setlocal sw=2 ts=2 sts=0
+
 
 " Cインデントの設定
 set cinoptions+=:0
@@ -350,6 +357,11 @@ noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 
+" redo
+nnoremap r :redo<CR>
+
+
+
 "------------------------
 " insert
 "------------------------
@@ -364,13 +376,15 @@ inoremap “ “<Left>
 inoremap '' ''<Left>
 inoremap "" ""<Left>
 
+
+
 "insertmodeでのdel,bs
 inoremap <C-D> <Del>
 inoremap <C-G> <BS>
 
 " insertmode抜ける
 inoremap <silent> jj <ESC>
-inoremap <silent> kk <ESC>
+"inoremap <silent> kk <ESC>
 inoremap <silent> <C-c> <ESC>
 
 " insertmodeでも簡単な移動ができるようにする
@@ -635,5 +649,15 @@ nmap <Leader>/ <Plug>NERDCommenterToggle
 let autodate_format="%Y_%m_%d_%T"
 
 
+" ***********************
+" vim-latex.vim
+" ***********************
+let tex_flavor = 'latex'
+set grepprg=grep\ -nH\ $*
+set shellslash
+"let g:Tex_DefaultTargetFormat = 'pdf' "Macの人はデフォルトでpdfなので必要ない その他のOSの人はデフォルトがdviなので必要
+let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
+let g:Tex_FormatDependency_pdf = 'dvi,pdf'
 
 " end of .vimrc
