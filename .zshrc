@@ -1,7 +1,7 @@
 # ------------------------------
 # 外部リソース
 # ------------------------------
-source ~/programming/shellScript/makememo.sh
+source ~/programming/shellScript/myscript/*.sh
 source ~/programming/openNI2/OpenNI-MacOSX-x64-2.2/OpenNIDevEnvironment
 
 
@@ -202,20 +202,17 @@ alias zshreload="source ~/.zshrc"
 alias -s py=python
 alias gi=git
 alias op=open
+alias ll="ls -la"
 alias cd=cdls
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
 
-#if [ -e "$home/dropbox" ]; then
-  #alias todo="$editor $home/dropbox/.todo.md"
-#else
-  #alias todo="$editor $home/.todo.md"
-#end
-
-alias todo="$EDITOR $HOME/Dropbox/.todo.md"
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
 
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"

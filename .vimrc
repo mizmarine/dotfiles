@@ -40,6 +40,7 @@ NeoBundle "tpope/vim-surround"
 NeoBundle "mattn/emmet-vim" "Zen-coding
 NeoBundle "scrooloose/nerdcommenter"
 NeoBundle "autodate.vim"
+NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
@@ -48,6 +49,7 @@ NeoBundle "jiangmiao/simple-javascript-indenter"
 NeoBundle "jsx/jsx.vim" "jsx補完
 NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
+"NeoBundle 'Townk/vim-autoclose'
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
@@ -60,6 +62,8 @@ NeoBundle "sophacles/vim-processing" "processing(.pde)
 NeoBundle "sudar/vim-arduino-syntax" "arduino(.ino)
 NeoBundle "jcf/vim-latex" "tex
 NeoBundle "rodjek/vim-puppet" " puppet
+NeoBundle "leafgarland/typescript-vim" " typescript
+NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
@@ -234,7 +238,7 @@ if &t_Co > 2 || has('gui_running')
 endif
 
 syntax enable
-colorscheme molokai 
+colorscheme molokai
 
 """"""""""""""""""""""""""""""
 " ステータスラインに文字コード等表示
@@ -360,8 +364,6 @@ noremap [space]f zf
 " redo
 nnoremap r :redo<CR>
 
-
-
 "------------------------
 " insert
 "------------------------
@@ -376,15 +378,12 @@ inoremap “ “<Left>
 inoremap '' ''<Left>
 inoremap "" ""<Left>
 
-
-
 "insertmodeでのdel,bs
-inoremap <C-D> <Del>
-inoremap <C-G> <BS>
+"inoremap <C-D> <Del>
+"inoremap <C-G> <BS>
 
 " insertmode抜ける
 inoremap <silent> jj <ESC>
-"inoremap <silent> kk <ESC>
 inoremap <silent> <C-c> <ESC>
 
 " insertmodeでも簡単な移動ができるようにする
@@ -399,9 +398,6 @@ nnoremap <C-e> <END>
 nnoremap <C-a> <HOME>
 vnoremap <C-e> <END>
 vnoremap <C-a> <HOME>
-
-" indentの1line調整
-"inoremap <C->> <ESC>v<<ESC>i
 
 "------------------------
 " shortcut 
@@ -503,6 +499,17 @@ endif
 "   "autochdirが存在しないが、カレントディレクトリを移動したい場合
 "   au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
 " endif
+
+""""""""""""""""""""""""""""""
+" grep結果のQuickfixのウィンドウから enterで対象行に飛べるようにする
+""""""""""""""""""""""""""""""
+function! OpenModifiableQF()
+        cw
+        set modifiable
+        set nowrap
+endfunction
+
+autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 
 "-------------------------
 " todo List
@@ -619,7 +626,7 @@ endif
 " ***********************
 " vim-coffee-script
 " ***********************
-" autocmd BufWritePost *.coffee silent make!
+"autocmd BufWritePost *.coffee silent make!
 autocmd BufWritePost *.coffee silent make! --bare
 
 
@@ -635,13 +642,10 @@ let g:quickrun_config.processing = {
         \     'exec':'%c --sketch=$PWD/ --output=/Library/Processing --run --force',
         \   }
 
-
 " ***********************
 " nerdcommenter 
 " ***********************
 nmap <Leader>/ <Plug>NERDCommenterToggle
-
-
 
 " ***********************
 " autodate.vim
@@ -659,5 +663,16 @@ set shellslash
 let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+
+" ***********************
+" vim-latex.vim
+" ***********************
+nnoremap <C-u> :Unite 
+
+" ***********************
+" PDV--phpDocumentor-for-Vim
+" ***********************
+nnoremap <C-D> :call PhpDocSingle()<CR>
+vnoremap <C-D> :call PhpDocRange()<CR>
 
 " end of .vimrc

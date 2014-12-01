@@ -1,0 +1,67 @@
+[user]
+  name = masa
+  email = masa@cyber.t.u-tokyo.ac.jp
+
+[color]
+  ui = auto
+
+[pull]
+  default = tracking
+
+[push]
+  default = tracking
+
+[core]
+  excludesfile = ~/.gitignore
+
+[alias]
+  # flow
+  fl = flow
+
+  # status
+  st = status
+  sh = show
+  sb = show-branch
+  rso = remote show origin
+
+  # diff
+  df = diff
+  ds = diff --staged
+  dw = diff --color-words
+  dh = diff HEAD
+
+  # commit
+  ad = add .
+  us = reset HEAD #unstage
+  ci = commit
+  ca = commit --amend
+  ss = stash
+
+  # branch
+  br = branch
+  co = checkout
+  mg = merge --no-ff --no-edit
+
+  # merge
+  rb = rebase
+  rv = revert --no-edit
+  rs = reset
+  rl = reflog
+
+  # remote
+  ft = fetch
+  
+  pl = pull 
+  plom = pull origin master
+  plod = pull origin dev
+
+  ps = push -u
+  psom = push origin master
+  psod = push origin dev
+
+  # log
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
+  #config
+  cfl = config --edit
+  cfg = config --global --edit
