@@ -25,10 +25,10 @@
   rso = remote show origin
 
   # diff
-  df = diff
-  ds = diff --staged
+  df = diff          # index - working tree
+  ds = diff --cached # head - index
+  dh = diff HEAD     # head - working tree
   dw = diff --color-words
-  dh = diff HEAD
 
   # commit
   ad = add .

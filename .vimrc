@@ -30,6 +30,7 @@ NeoBundle 'gregsexton/gitv'
 
 " filer
 NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
 NeoBundle "scrooloose/nerdtree"
 
 " statusline
@@ -46,10 +47,8 @@ NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
 NeoBundle "jiangmiao/simple-javascript-indenter"
 
 " completion
-NeoBundle "jsx/jsx.vim" "jsx補完
 NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
-"NeoBundle 'Townk/vim-autoclose'
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
@@ -64,6 +63,7 @@ NeoBundle "jcf/vim-latex" "tex
 NeoBundle "rodjek/vim-puppet" " puppet
 NeoBundle "leafgarland/typescript-vim" " typescript
 NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
+NeoBundle "nathanaelkane/vim-indent-guides" "indent level
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
@@ -73,6 +73,9 @@ NeoBundle "altercation/vim-colors-solarized"
 " システム設定
 "------------------------
 
+map  
+map!  
+  
 " mswin.vimを読み込む
 " source $VIMRUNTIME/mswin.vim
 " behave mswin
@@ -312,14 +315,6 @@ nnoremap j gj
 nnoremap k gk
 nnoremap l <Right>zv
 
-" SPC+. / .vimrcを開く
-nnoremap <Space>.v :<C-u>edit $MYVIMRC<CR>
-nnoremap <Space>.g :<C-u>edit $MYGVIMRC<CR>
-
-" SPC + , / source ~/.vimrc を実行する。
-nnoremap <Space>,v  :<C-u>source $MYVIMRC<CR>
-nnoremap <Space>,g  :<C-u>source $MYGVIMRC<CR>
-
 " , i s / vimshell起動
 noremap <silent> ,is :VimShell<CR>
 
@@ -361,7 +356,7 @@ noremap [space]i zMzv
 noremap [space]r zR
 noremap [space]f zf
 
-" redo
+" re-do
 nnoremap r :redo<CR>
 
 "------------------------
@@ -392,12 +387,13 @@ inoremap <silent> <C-c> <ESC>
 "inoremap <C-h> <Left>
 "inoremap <C-l> <Right>
 
-inoremap <C-e> <END>
-inoremap <C-a> <HOME>
-nnoremap <C-e> <END>
-nnoremap <C-a> <HOME>
-vnoremap <C-e> <END>
-vnoremap <C-a> <HOME>
+" emacsライクな行頭，行末移動
+"inoremap <C-e> <END>
+"inoremap <C-a> <HOME>
+"nnoremap <C-e> <END>
+"nnoremap <C-a> <HOME>
+"vnoremap <C-e> <END>
+"vnoremap <C-a> <HOME>
 
 "------------------------
 " shortcut 
@@ -489,16 +485,6 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
-""""""""""""""""""""""""""""""
-" grep,tagsのためカレントディレクトリをファイルと同じディレクトリに移動する
-""""""""""""""""""""""""""""""
-" if exists('+autochdir')
-"   "autochdirがある場合カレントディレクトリを移動
-"   set autochdir
-" else
-"   "autochdirが存在しないが、カレントディレクトリを移動したい場合
-"   au BufEnter * execute ":silent! lcd " . escape(expand("%:p:h"), ' ')
-" endif
 
 """"""""""""""""""""""""""""""
 " grep結果のQuickfixのウィンドウから enterで対象行に飛べるようにする
@@ -534,9 +520,22 @@ endfunction
 "------------------------
 
 "********************
+" unite.vim
+"********************
+nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
+nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
+nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
+nnoremap <silent> <SPACE>ub :<C-u>Unite buffer<CR>
+nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru<CR>
+nnoremap <silent> <SPACE>ug :<C-u>Unite grep<CR>
+
+
+au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
+
+"********************
 " NERDTREE
 "********************
-autocmd Vimenter * NERDTree ./
+"autocmd Vimenter * NERDTree ./
 nmap <silent> <C-x><C-e>      :NERDTreeToggle<CR>
 vmap <silent> <C-x><C-e> <ESC>:NERDTreeToggle<CR>
 smap <silent> <C-x><C-e>      :NERDTreeToggle<CR>
@@ -547,13 +546,11 @@ cmap <silent> <C-x><C-e> <C-u>:NERDTreeToggle<CR>
 " neoComplcache
 " *******************
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
-" Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
-" Set minimum syntax keyword length.
+let g:neocomplcache_enable_camel_case_completion = 0
+let g:neocomplcache_enable_underbar_completion = 1
+
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
@@ -561,6 +558,28 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 let g:neocomplcache_dictionary_filetype_lists = {
     \ 'default' : ''
     \ }
+
+" Plugin key-mappings.
+"inoremap <expr><C-g>     neocomplcache#undo_completion()
+"inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  "return neocomplcache#smart_close_popup() . "\<CR>"
+  return neocomplcache#smart_close_popup()
+endfunction
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>
+" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
 
 " add jsx completion
 " jsx.vim の jsx#complete が自動で呼び出されます
@@ -582,37 +601,16 @@ endif
 " automatically open and close the popup menu / preview window
  au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-" inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-" inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 
 " ***********************
 " neosnippet
 " ***********************
 
-"imap <C-k> <Plug>(neosnippet_expand_or_jump)
-
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"imap <C-k> <Plug>(neosnippet_expand_or_jump)
+"smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -652,7 +650,6 @@ nmap <Leader>/ <Plug>NERDCommenterToggle
 " ***********************
 let autodate_format="%Y_%m_%d_%T"
 
-
 " ***********************
 " vim-latex.vim
 " ***********************
@@ -665,14 +662,19 @@ let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 let g:Tex_FormatDependency_pdf = 'dvi,pdf'
 
 " ***********************
-" vim-latex.vim
-" ***********************
-nnoremap <C-u> :Unite 
-
-" ***********************
 " PDV--phpDocumentor-for-Vim
 " ***********************
 nnoremap <C-D> :call PhpDocSingle()<CR>
 vnoremap <C-D> :call PhpDocRange()<CR>
 
+
+" ***********************
+" vim-indent-guides
+" ***********************
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=233
+autocmd VimEnter,ColorScheme * :hi IndentGuidesEven  ctermbg=234
+let g:indent_guides_enable_on_vim_startup = 1
 " end of .vimrc
