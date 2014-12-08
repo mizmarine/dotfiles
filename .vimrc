@@ -11,6 +11,7 @@ endif
 
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 
 " system
 NeoBundle 'Shougo/vimproc.vim', {
@@ -522,6 +523,19 @@ endfunction
 "********************
 " unite.vim
 "********************
+let g:unite_source_menu_menus = {
+\   "shortcut" : {
+\       "description" : "sample unite-menu",
+\       "command_candidates" : [
+\           ["edit vimrc", "edit $MYVIMRC"],
+\           ["edit gvimrc", "edit $MYGVIMRC"],
+\           ["unite-file_mru", "Unite file_mru"],
+\           ["Unite Beautiful Attack", "Unite -auto-preview colorscheme"],
+\           ["unite-output:message", "Unite output:message"],
+\       ],
+\   },
+\}
+"let g:unite_enable_start_insert=1
 nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
 nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
 nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
@@ -573,6 +587,7 @@ endfunction
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 " <C-h>, <BS>: close popup and delete backword char.
 " inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>
@@ -609,17 +624,25 @@ endif
 
 
 " Plugin key-mappings.
-"imap <C-k> <Plug>(neosnippet_expand_or_jump)
-"smap <C-k> <Plug>(neosnippet_expand_or_jump)
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
 " SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+"imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+"smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
+
+" Enable snipMate compatibility feature.
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" Tell Neosnippet about the other snippets
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
 " ***********************
 " vim-coffee-script
@@ -656,10 +679,11 @@ let autodate_format="%Y_%m_%d_%T"
 let tex_flavor = 'latex'
 set grepprg=grep\ -nH\ $*
 set shellslash
-"let g:Tex_DefaultTargetFormat = 'pdf' "Macの人はデフォルトでpdfなので必要ない その他のOSの人はデフォルトがdviなので必要
+let g:Tex_DefaultTargetFormat = 'pdf' "Macの人はデフォルトでpdfなので必要ない その他のOSの人はデフォルトがdviなので必要
 let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
 let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
 let g:Tex_FormatDependency_pdf = 'dvi,pdf'
+let g:Tex_MultipleCompileFormats = 'pdf'
 
 " ***********************
 " PDV--phpDocumentor-for-Vim

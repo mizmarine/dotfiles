@@ -181,7 +181,8 @@ export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_
 ### z.sh利用
 . `brew --prefix`/etc/profile.d/z.sh
 
-
+### for latex
+export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
 
 
 #############
