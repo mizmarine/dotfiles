@@ -12,22 +12,22 @@
   default = tracking
 
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = /Users/masa/.gitignore
 
 [alias]
   # flow
   fl = flow
 
   # status
-  st = status
-  sh = show
-  sb = show-branch
+  st  = status
+  sh  = show
+  sb  = show-branch
   rso = remote show origin
 
   # diff
-  df = diff          # index - working tree
-  ds = diff --cached # head - index
-  dh = diff HEAD     # head - working tree
+  df = diff          # index - working tree : diff
+  ds = diff --cached # head - index         : diff staged
+  dh = diff HEAD     # head - working tree  : diff head
   dw = diff --color-words
 
   # commit
@@ -41,6 +41,7 @@
   br = branch
   co = checkout
   mg = merge --no-ff --no-edit
+  tg = tag
 
   # merge
   rb = rebase
@@ -49,19 +50,26 @@
   rl = reflog
 
   # remote
-  ft = fetch
+  ft   = fetch
   
-  pl = pull 
+  pl   = pull 
   plom = pull origin master
   plod = pull origin dev
 
-  ps = push -u
+  ps   = push -u
   psom = push origin master
   psod = push origin dev
 
   # log
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  la = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
 
   #config
   cfl = config --edit
   cfg = config --global --edit
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

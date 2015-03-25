@@ -38,11 +38,12 @@ NeoBundle "scrooloose/nerdtree"
 NeoBundle "itchyny/lightline.vim"
 
 " edit
-NeoBundle "tpope/vim-surround"
+"NeoBundle "tpope/vim-surround"
 NeoBundle "mattn/emmet-vim" "Zen-coding
 NeoBundle "scrooloose/nerdcommenter"
 NeoBundle "autodate.vim"
 NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
+NeoBundle "h1mesuke/vim-alignta"
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
@@ -65,6 +66,10 @@ NeoBundle "rodjek/vim-puppet" " puppet
 NeoBundle "leafgarland/typescript-vim" " typescript
 NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 NeoBundle "nathanaelkane/vim-indent-guides" "indent level
+
+" syntax checker
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tell-k/vim-autopep8'
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
@@ -279,6 +284,7 @@ endfunction
 "------------------------
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.twig set filetype=html
+au BufNewFile,BufRead *.json.org set filetype=json
 
 
 "------------------------
@@ -328,6 +334,13 @@ nnoremap <C-L> <C-W>l
 " バッファ関連
 noremap <C-N> :bnext<CR>
 noremap <C-P> :bprevious<CR>
+
+" タブ移動
+nnoremap <S-Tab> gT
+nnoremap <Tab><Tab> gt
+for i in range(1, 9)
+    execute 'nnoremap <Tab>' . i . ' ' . i . 'gt'
+endfor
 
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
@@ -389,12 +402,12 @@ inoremap <silent> <C-c> <ESC>
 "inoremap <C-l> <Right>
 
 " emacsライクな行頭，行末移動
-"inoremap <C-e> <END>
-"inoremap <C-a> <HOME>
+inoremap <C-e> <ESC><END>i
+inoremap <C-a> <ESC><HOME>i
 "nnoremap <C-e> <END>
 "nnoremap <C-a> <HOME>
-"vnoremap <C-e> <END>
-"vnoremap <C-a> <HOME>
+vnoremap <C-e> <END>
+vnoremap <C-a> <HOME>
 
 "------------------------
 " shortcut 
@@ -698,7 +711,18 @@ vnoremap <C-D> :call PhpDocRange()<CR>
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=233
+autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=234
 autocmd VimEnter,ColorScheme * :hi IndentGuidesEven  ctermbg=234
 let g:indent_guides_enable_on_vim_startup = 1
+
+" ***********************
+" syntastic
+" ***********************
+let g:syntastic_python_checkers = ['pep8', 'pyflakes']
+
+" ***********************
+" vim-autopep8
+" ***********************
+let g:autopep8_disable_show_diff=1
+
 " end of .vimrc
