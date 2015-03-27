@@ -1,8 +1,8 @@
 # ------------------------------
 # 外部リソース
 # ------------------------------
-source ~/programming/shellScript/myscript/*.sh
-source ~/programming/openNI2/OpenNI-MacOSX-x64-2.2/OpenNIDevEnvironment
+#source ~/programming/shellScript/myscript/*.sh
+#source ~/programming/openNI2/OpenNI-MacOSX-x64-2.2/OpenNIDevEnvironment
 
 
 # ------------------------------
@@ -165,21 +165,25 @@ export PATH=$PATH:$NODE_PATH
 nvm use v0.10.26
 
 ### python:virtualenv
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PYTHONPATH=/usr/local/Cellar/pyqt/4.10.3/lib/python2.7/site-packages:/usr/local/Cellar/sip/4.15.3/lib/python2.7/site-packages:$PYTHONPATH
+# source /usr/local/bin/virtualenvwrapper.sh
+# export PYTHONPATH=/usr/local/Cellar/pyqt/4.10.3/lib/python2.7/site-packages:/usr/local/Cellar/sip/4.15.3/lib/python2.7/site-packages:$PYTHONPATH
 
 ### python:django-admin
 export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
+
+### pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 ### phpのバージョン決定
 export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
 
 ### boostのpath
-export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
+#export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
 
 ### z.sh利用
-. `brew --prefix`/etc/profile.d/z.sh
+#. `brew --prefix`/etc/profile.d/z.sh
 
 ### for latex
 export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
