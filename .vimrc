@@ -1,10 +1,36 @@
-set nocompatible
-filetype off
+" Note: Skip initialization for vim-tiny or vim-small.
+if !1 | finish | endif
 
 if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-  call neobundle#rc(expand('~/.vim/bundle'))
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+
 
 " ここにインストールしたいプラグインのリストを書く
 
@@ -303,6 +329,10 @@ set foldcolumn=2 " 左側に折りたたみガイド表示$
 "------------------------
 " normal 
 "------------------------
+
+" ; to :
+nnoremap ; :
+
 " ヘルプ検索
 nnoremap <F1> K
 
@@ -711,7 +741,7 @@ vnoremap <C-D> :call PhpDocRange()<CR>
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=234
+autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=white
 autocmd VimEnter,ColorScheme * :hi IndentGuidesEven  ctermbg=234
 let g:indent_guides_enable_on_vim_startup = 1
 
