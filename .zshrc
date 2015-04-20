@@ -157,12 +157,15 @@ esac
 ############
 
 ### node設定
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-nvm use default
-npm_dir=${NVM_PATH}_modules
-export NODE_PATH=$npm_dir
-export PATH=$PATH:$NODE_PATH
-nvm use v0.10.26
+#[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
+#nvm use default
+#npm_dir=${NVM_PATH}_modules
+#export NODE_PATH=$npm_dir
+#export PATH=$PATH:$NODE_PATH
+#nvm use v0.10.26
+
+# nodebrew設定
+export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ### python:virtualenv
 # source /usr/local/bin/virtualenvwrapper.sh

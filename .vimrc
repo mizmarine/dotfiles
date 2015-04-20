@@ -70,6 +70,7 @@ NeoBundle "scrooloose/nerdcommenter"
 NeoBundle "autodate.vim"
 NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
 NeoBundle "h1mesuke/vim-alignta"
+NeoBundle 'editorconfig/editorconfig-vim'
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
@@ -741,7 +742,7 @@ vnoremap <C-D> :call PhpDocRange()<CR>
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
-autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=white
+autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=234
 autocmd VimEnter,ColorScheme * :hi IndentGuidesEven  ctermbg=234
 let g:indent_guides_enable_on_vim_startup = 1
 
