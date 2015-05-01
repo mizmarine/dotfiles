@@ -19,7 +19,7 @@ bindkey -e               # キーバインドをemacsモードに設定
 #bindkey -v              # キーバインドをviモードに設定
 
 setopt no_beep           # ビープ音を鳴らさないようにする
-setopt auto_cd           # ディレクトリ名の入力のみで移動する 
+setopt auto_cd           # ディレクトリ名の入力のみで移動する
 setopt auto_pushd        # cd時にディレクトリスタックにpushdする
 #setopt correct           # コマンドのスペルを訂正する
 setopt magic_equal_subst # =以降も補完する(--prefix=/usrなど)
@@ -181,6 +181,9 @@ export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+### ruby設定
+eval "$(rbenv init -)"
 
 ### phpのバージョン決定
 export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
