@@ -108,7 +108,7 @@ NeoBundle "altercation/vim-colors-solarized"
 
 map  
 map!  
-  
+
 " mswin.vimを読み込む
 " source $VIMRUNTIME/mswin.vim
 " behave mswin
@@ -200,7 +200,7 @@ set hlsearch
 
 
 "------------------------
-" display 
+" display
 "------------------------
 
 " スプラッシュ(起動時のメッセージ)を表示しない
@@ -281,9 +281,9 @@ colorscheme molokai
 " iconvが使用可能の場合、カーソル上の文字コードをエンコードに応じた表示にするFencB()を使用
 """"""""""""""""""""""""""""""
 if has('iconv')
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=[0x%{FencB()}]\ (%v,%l)/%L%8P\ 
+  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=[0x%{FencB()}]\ (%v,%l)/%L%8P\
 else
-  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\ 
+  set statusline=%<%f\ %m\ %r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=\ (%v,%l)/%L%8P\
 endif
 
 
@@ -307,7 +307,7 @@ endfunction
 "------------------------
 
 "------------------------
-" filetype 
+" filetype
 "------------------------
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.twig set filetype=html
@@ -315,7 +315,7 @@ au BufNewFile,BufRead *.json.org set filetype=json
 
 
 "------------------------
-" folding 
+" folding
 "------------------------
 " folding基本設定
 set foldenable
@@ -328,7 +328,7 @@ set foldnestmax=10  " 最大折りたたみ深度$
 set foldcolumn=2 " 左側に折りたたみガイド表示$
 
 "------------------------
-" normal 
+" normal
 "------------------------
 
 " ; to :
@@ -441,7 +441,7 @@ vnoremap <C-e> <END>
 vnoremap <C-a> <HOME>
 
 "------------------------
-" shortcut 
+" shortcut
 "------------------------
 " SPC+. / .vimrcを開く
 nnoremap <Space>.v :<C-u>edit $MYVIMRC<CR>
@@ -708,7 +708,7 @@ let g:quickrun_config.processing = {
         \   }
 
 " ***********************
-" nerdcommenter 
+" nerdcommenter
 " ***********************
 nmap <Leader>/ <Plug>NERDCommenterToggle
 

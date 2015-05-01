@@ -207,7 +207,9 @@ function cdls(){
   ls;
 }
 
-
+function git(){
+  hub "$@"
+}
 
 #alias
 
