@@ -68,9 +68,11 @@
     cfg = config --global --edit
 
     #hub
-    see = browse
+    se = browse
+    si = browse -- issues
     pr = pull-request
     is = issue
+    ic = issue create
 
 
 [difftool "sourcetree"]
