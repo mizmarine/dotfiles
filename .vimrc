@@ -71,6 +71,7 @@ NeoBundle "autodate.vim"
 NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
 NeoBundle "h1mesuke/vim-alignta"
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'vim-scripts/vim-niji'
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
