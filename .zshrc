@@ -8,8 +8,7 @@
 # ------------------------------
 # settings
 # ------------------------------
-
-export PATH=.:$PATH
+export PATH=.:/usr/local/bin:$PATH # brew で installしたプログラムを利用する
 
 export EDITOR=vim        # エディタをvimに設定
 export LANG=ja_JP.UTF-8  # 文字コードをUTF-8に設定
@@ -171,6 +170,10 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 # source /usr/local/bin/virtualenvwrapper.sh
 # export PYTHONPATH=/usr/local/Cellar/pyqt/4.10.3/lib/python2.7/site-packages:/usr/local/Cellar/sip/4.15.3/lib/python2.7/site-packages:$PYTHONPATH
 
+### haskell
+### cabal用パス設定
+export PATH=/Users/masa/Library/Haskell/bin:$PATH
+
 ### python:django-admin
 export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
 
@@ -204,7 +207,9 @@ function cdls(){
   ls;
 }
 
-
+function git(){
+  hub "$@"
+}
 
 #alias
 
