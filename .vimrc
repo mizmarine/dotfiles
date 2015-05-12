@@ -314,6 +314,7 @@ au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.twig set filetype=html
 au BufNewFile,BufRead *.json.org set filetype=json
 au BufNewFile,BufRead *.coffee set filetype=coffee
+au BufNewFile,BufRead .eslintrc set filetype=javascript
 
 
 "------------------------
