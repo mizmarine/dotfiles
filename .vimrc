@@ -418,6 +418,7 @@ inoremap <> <><Left>
 inoremap “ “<Left>
 inoremap '' ''<Left>
 inoremap "" ""<Left>
+inoremap `` ``<Left>
 
 "insertmodeでのdel,bs
 "inoremap <C-D> <Del>
