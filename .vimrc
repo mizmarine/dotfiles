@@ -753,6 +753,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 " syntastic
 " ***********************
 let g:syntastic_python_checkers = ['pep8', 'pyflakes']
+let g:syntastic_javascript_checkers = ['eslint']
 
 " ***********************
 " vim-autopep8
