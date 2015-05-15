@@ -1,0 +1,5 @@
+[user]
+    name = masa
+    email = masa@cyber.t.u-tokyo.ac.jp
+
+
