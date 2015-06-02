@@ -21,20 +21,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-
-
-" ここにインストールしたいプラグインのリストを書く
-
-
 NeoBundle 'Shougo/neocomplcache.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
@@ -77,7 +63,6 @@ NeoBundle 'vim-scripts/vim-niji'
 NeoBundle "jiangmiao/simple-javascript-indenter"
 
 " completion
-NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
@@ -104,6 +89,20 @@ NeoBundle 'tell-k/vim-autopep8'
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
 
+
+
+call neobundle#end()
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+
+
+" ここにインストールしたいプラグインのリストを書く
 
 "------------------------
 " システム設定
@@ -317,6 +316,7 @@ au BufNewFile,BufRead *.twig set filetype=html
 au BufNewFile,BufRead *.json.org set filetype=json
 au BufNewFile,BufRead *.coffee set filetype=coffee
 au BufNewFile,BufRead .eslintrc set filetype=javascript
+au BufNewFile,BufRead *.tt set filetype=treetop
 
 
 "------------------------
