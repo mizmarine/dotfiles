@@ -188,6 +188,10 @@ eval "$(rbenv init -)"
 ### phpのバージョン決定
 export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
 
+### gopath
+export GOPATH=$HOME/programming/go
+export PATH=$PATH:$GOPATH/bin
+
 ### boostのpath
 #export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
 

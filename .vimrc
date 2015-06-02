@@ -82,7 +82,9 @@ NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
-NeoBundle 'jelera/vim-javascript-syntax' "javascript
+"NeoBundle 'jelera/vim-javascript-syntax' "javascript
+NeoBundle "pangloss/vim-javascript"
+NeoBundle "mxw/vim-jsx"
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
 NeoBundle "groenewege/vim-less" "less
@@ -760,5 +762,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 " vim-autopep8
 " ***********************
 let g:autopep8_disable_show_diff=1
+
+" ***********************
+" vim-jsx
+" ***********************
+let g:jsx_ext_required = 0
 
 " end of .vimrc
