@@ -11,7 +11,7 @@
     default = tracking
 
 [core]
-    excludesfile = /Users/masa/.gitignore
+    excludesfile = ~/.gitignore.local
 
 [alias]
     # flow
