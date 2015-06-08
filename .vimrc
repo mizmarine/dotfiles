@@ -44,13 +44,14 @@ NeoBundle 'gregsexton/gitv'
 " filer
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle "scrooloose/nerdtree"
 
 " statusline
 NeoBundle "itchyny/lightline.vim"
 
 " edit
-"NeoBundle "tpope/vim-surround"
+NeoBundle "tpope/vim-surround"
 NeoBundle "mattn/emmet-vim" "Zen-coding
 NeoBundle "scrooloose/nerdcommenter"
 NeoBundle "autodate.vim"
@@ -90,6 +91,7 @@ NeoBundle 'tell-k/vim-autopep8'
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
 
+NeoBundle "szw/vim-tags"
 
 
 call neobundle#end()
@@ -588,12 +590,12 @@ let g:unite_source_menu_menus = {
 \}
 "let g:unite_enable_start_insert=1
 nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
+nnoremap <silent> <SPACE>ul :<C-u>Unite line<CR>
 nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
 nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
 nnoremap <silent> <SPACE>ub :<C-u>Unite buffer<CR>
 nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru<CR>
 nnoremap <silent> <SPACE>ug :<C-u>Unite grep<CR>
-
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
@@ -757,6 +759,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 " syntastic
 " ***********************
 let g:syntastic_python_checkers = ['pep8', 'pyflakes']
+"let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['eslint']
 
 " ***********************
