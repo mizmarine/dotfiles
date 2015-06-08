@@ -45,6 +45,7 @@ NeoBundle 'gregsexton/gitv'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle "scrooloose/nerdtree"
+NeoBundle 'h1mesuke/unite-outline'
 
 " statusline
 NeoBundle "itchyny/lightline.vim"
@@ -67,9 +68,9 @@ NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
-"NeoBundle 'jelera/vim-javascript-syntax' "javascript
-NeoBundle "pangloss/vim-javascript"
-NeoBundle "mxw/vim-jsx"
+NeoBundle 'jelera/vim-javascript-syntax' "javascript
+"NeoBundle "pangloss/vim-javascript"
+"NeoBundle "mxw/vim-jsx"
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
 NeoBundle "groenewege/vim-less" "less
@@ -89,6 +90,7 @@ NeoBundle 'tell-k/vim-autopep8'
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
 
+NeoBundle "szw/vim-tags"
 
 
 call neobundle#end()
@@ -587,12 +589,12 @@ let g:unite_source_menu_menus = {
 \}
 "let g:unite_enable_start_insert=1
 nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
+nnoremap <silent> <SPACE>ul :<C-u>Unite line<CR>
 nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
 nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
 nnoremap <silent> <SPACE>ub :<C-u>Unite buffer<CR>
 nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru<CR>
 nnoremap <silent> <SPACE>ug :<C-u>Unite grep<CR>
-
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
@@ -756,6 +758,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 " syntastic
 " ***********************
 let g:syntastic_python_checkers = ['pep8', 'pyflakes']
+"let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['eslint']
 
 " ***********************
