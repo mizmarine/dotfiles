@@ -46,6 +46,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle "scrooloose/nerdtree"
+NeoBundle 'tsukkee/unite-tag'
 
 " statusline
 NeoBundle "itchyny/lightline.vim"
@@ -412,6 +413,9 @@ noremap [space]f zf
 " re-do
 nnoremap r :redo<CR>
 
+" タグ検索
+nnoremap <C-]> g<C-]>
+
 "------------------------
 " insert
 "------------------------
@@ -591,6 +595,8 @@ let g:unite_source_menu_menus = {
 "let g:unite_enable_start_insert=1
 nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
 nnoremap <silent> <SPACE>ul :<C-u>Unite line<CR>
+nnoremap <silent> <SPACE>uo :<C-u>Unite outline<CR>
+nnoremap <silent> <SPACE>ut :<C-u>Unite tag<CR>
 nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
 nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
 nnoremap <silent> <SPACE>ub :<C-u>Unite buffer<CR>
