@@ -66,6 +66,7 @@ NeoBundle "jiangmiao/simple-javascript-indenter"
 
 " completion
 NeoBundle "myhere/vim-nodejs-complete" "node補完
+NeoBundle "eagletmt/neco-ghc" "haskell補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
@@ -84,6 +85,7 @@ NeoBundle "rodjek/vim-puppet" " puppet
 NeoBundle "leafgarland/typescript-vim" " typescript
 NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 NeoBundle "nathanaelkane/vim-indent-guides" "indent level
+NeoBundle "dag/vim2hs" "haskell
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
@@ -765,8 +767,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 " syntastic
 " ***********************
 let g:syntastic_python_checkers = ['pep8', 'pyflakes']
-"let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_haskell_checkers = ['hlint']
 
 " ***********************
 " vim-autopep8
@@ -778,9 +780,14 @@ let g:autopep8_disable_show_diff=1
 " ***********************
 let g:jsx_ext_required = 0
 
-
 " ***********************
 " vim-json
 " ***********************
 let g:vim_json_syntax_conceal = 0
+
+" ***********************
+" vim2hs
+" ***********************
+let g:haskell_conceal = 0
+
 " end of .vimrc
