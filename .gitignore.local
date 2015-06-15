@@ -2,4 +2,6 @@
 *.swp
 *~
 *.pyc
-ctags
+tags
+*.orig
+*.bak
