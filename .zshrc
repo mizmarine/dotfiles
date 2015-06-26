@@ -172,7 +172,7 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ### haskell
 ### cabal用パス設定
-export PATH=/Users/masa/Library/Haskell/bin:$PATH
+export PATH=$HOME/Library/Haskell/bin:$PATH
 
 ### python:django-admin
 export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
