@@ -114,8 +114,10 @@ NeoBundleCheck
 " システム設定
 "------------------------
 
-map  
-map!  
+noremap  
+noremap!  
+noremap <BS> 
+noremap! <BS> 
 
 " mswin.vimを読み込む
 " source $VIMRUNTIME/mswin.vim
@@ -434,18 +436,18 @@ inoremap "" ""<Left>
 inoremap `` ``<Left>
 
 "insertmodeでのdel,bs
-"inoremap <C-D> <Del>
-"inoremap <C-G> <BS>
+inoremap <C-D> <Del>
+inoremap <C-G> <BS>
 
 " insertmode抜ける
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-c> <ESC>
 
 " insertmodeでも簡単な移動ができるようにする
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 " emacsライクな行頭，行末移動
 inoremap <C-e> <ESC><END>i
