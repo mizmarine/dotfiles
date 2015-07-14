@@ -18,3 +18,12 @@ indent_size = 2
 indent_style = space
 indent_size = 2
 
+[*.rb]
+indent_style = space
+indent_size = 2
+
+[*.treetop]
+indent_style = space
+indent_size = 2
+
+
