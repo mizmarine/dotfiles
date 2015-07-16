@@ -6,3 +6,4 @@ tags
 *.orig
 *.bak
 *-checkpoint.ipynb
+.python-version
