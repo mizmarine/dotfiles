@@ -94,8 +94,9 @@ NeoBundle 'tell-k/vim-autopep8'
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
 
+" utility
 NeoBundle "szw/vim-tags"
-
+NeoBundle "rizzatti/dash.vim"
 
 call neobundle#end()
 
@@ -791,5 +792,11 @@ let g:vim_json_syntax_conceal = 0
 " vim2hs
 " ***********************
 let g:haskell_conceal = 0
+
+" ***********************
+" dash.vim
+" ***********************
+nmap <silent> <leader>d <Plug>DashSearch
+
 
 " end of .vimrc
