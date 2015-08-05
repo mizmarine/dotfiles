@@ -177,6 +177,10 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 ### python:django-admin
 export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
 
+### pyenv-virtualenv
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+
 ### anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
