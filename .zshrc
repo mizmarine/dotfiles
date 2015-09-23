@@ -248,3 +248,9 @@ export PATH="/usr/local/heroku/bin:$PATH"
 ### fuck
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/masa/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/masa/google-cloud-sdk/completion.zsh.inc'
