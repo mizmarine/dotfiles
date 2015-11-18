@@ -86,6 +86,7 @@ NeoBundle "leafgarland/typescript-vim" " typescript
 NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 NeoBundle "nathanaelkane/vim-indent-guides" "indent level
 NeoBundle "dag/vim2hs" "haskell
+NeoBundle "fatih/vim-go" "go
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'

@@ -235,6 +235,7 @@ alias cd=cdls
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
+alias gc=gcloud
 
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
