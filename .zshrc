@@ -236,12 +236,11 @@ alias chrome="open -a /Applications/Google\ Chrome.app"
 alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
 alias gc=gcloud
+alias vg=vagrant
 
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
-
-
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
