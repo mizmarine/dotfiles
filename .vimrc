@@ -94,6 +94,7 @@ NeoBundle 'tell-k/vim-autopep8'
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
+NeoBundle "tomasr/molokai"
 
 " utility
 NeoBundle "szw/vim-tags"
