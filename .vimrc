@@ -22,6 +22,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 
 NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 
@@ -67,6 +68,8 @@ NeoBundle "jiangmiao/simple-javascript-indenter"
 " completion
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 NeoBundle "eagletmt/neco-ghc" "haskell補完
+NeoBundle "nsf/gocode" "go補完
+NeoBundle 'davidhalter/jedi-vim' "python補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
@@ -108,10 +111,6 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-
-
-
-" ここにインストールしたいプラグインのリストを書く
 
 "------------------------
 " システム設定
@@ -622,66 +621,66 @@ smap <silent> <C-x><C-e>      :NERDTreeToggle<CR>
 imap <silent> <C-x><C-e> <ESC>:NERDTreeToggle<CR>
 cmap <silent> <C-x><C-e> <C-u>:NERDTreeToggle<CR>
 
+
 " *******************
-" neoComplcache
+" neoComplete
 " *******************
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '¥*ku¥*'
 
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 1
-
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
-
-" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplcache#undo_completion()
-"inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  "return neocomplcache#smart_close_popup() . "\<CR>"
-  return neocomplcache#smart_close_popup()
+ "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+ "" For no inserting <CR> key.
+ ""return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" *******************
+" neoComplcache
+" *******************
 
+"let g:neocomplcache_enable_at_startup = 0
+"let g:neocomplcache_enable_smart_case = 1
+"let g:neocomplcache_enable_camel_case_completion = 0
+"let g:neocomplcache_enable_underbar_completion = 1
 
-" add jsx completion
-" jsx.vim の jsx#complete が自動で呼び出されます
-if !exists("g:neocomplcache_force_omni_patterns")
-    let g:neocomplcache_force_omni_patterns = {}
-endif
+"let g:neocomplcache_min_syntax_length = 3
+"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" . を打った時にオムニ補完が呼び出されるようにする
-let g:neocomplcache_force_omni_patterns.jsx = '\.'
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+    "\ 'default' : ''
+    "\ }
 
-" add nodejs completion
-autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
+""inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+  ""return neocomplcache#smart_close_popup() . "\<CR>"
+  "return neocomplcache#smart_close_popup()
+"endfunction
 
- let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
- let g:node_usejscomplete = 1
-" automatically open and close the popup menu / preview window
- au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 
 " ***********************
@@ -800,5 +799,9 @@ let g:haskell_conceal = 0
 " ***********************
 nmap <silent> <leader>d <Plug>DashSearch
 
+" ***********************
+" vim-go
+" ***********************
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 " end of .vimrc

@@ -144,7 +144,7 @@ RPROMPT='[`rprompt-git-current-branch`%~]'
 
 ### Title (user@hostname) ###
 case "${TERM}" in
-kterm*|xterm*|)
+(kterm*|xterm*|)
   precmd() {
     echo -ne "\033]0;${USER}@${HOST%%.*}\007"
   }
@@ -235,13 +235,12 @@ alias cd=cdls
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
+alias gc=gcloud
 alias vg=vagrant
 
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
-
-
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
@@ -251,7 +250,7 @@ alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/m-izumi/google-cloud-sdk/path.zsh.inc'
+source '/Users/masa/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'
+source '/Users/masa/google-cloud-sdk/completion.zsh.inc'
