@@ -1,0 +1,10 @@
+.DS_Store
+*.swp
+*~
+*.pyc
+tags
+*.orig
+*.bak
+*-checkpoint.ipynb
+.python-version
+ruby/rbenv/*

@@ -21,11 +21,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
-
-" ここにインストールしたいプラグインのリストを書く
-
-
 NeoBundle 'Shougo/neocomplcache.vim'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 
@@ -48,30 +45,36 @@ NeoBundle 'gregsexton/gitv'
 " filer
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle "scrooloose/nerdtree"
+NeoBundle 'tsukkee/unite-tag'
 
 " statusline
 NeoBundle "itchyny/lightline.vim"
 
 " edit
-"NeoBundle "tpope/vim-surround"
+NeoBundle "tpope/vim-surround"
 NeoBundle "mattn/emmet-vim" "Zen-coding
 NeoBundle "scrooloose/nerdcommenter"
 NeoBundle "autodate.vim"
 NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
 NeoBundle "h1mesuke/vim-alignta"
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'vim-scripts/vim-niji'
 
 " indent
 NeoBundle "jiangmiao/simple-javascript-indenter"
 
 " completion
-"NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
+NeoBundle "eagletmt/neco-ghc" "haskell補完
+NeoBundle "nsf/gocode" "go補完
+NeoBundle 'davidhalter/jedi-vim' "python補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
 NeoBundle 'jelera/vim-javascript-syntax' "javascript
+NeoBundle 'elzr/vim-json' "json
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
 NeoBundle "groenewege/vim-less" "less
@@ -83,6 +86,8 @@ NeoBundle "rodjek/vim-puppet" " puppet
 NeoBundle "leafgarland/typescript-vim" " typescript
 NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 NeoBundle "nathanaelkane/vim-indent-guides" "indent level
+NeoBundle "dag/vim2hs" "haskell
+NeoBundle "fatih/vim-go" "go
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
@@ -90,26 +95,18 @@ NeoBundle 'tell-k/vim-autopep8'
 
 " color scheme
 NeoBundle "altercation/vim-colors-solarized"
-
+NeoBundle "tomasr/molokai"
 
 call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-
-
 
 "------------------------
 " システム設定
 "------------------------
 
-map  
-map!  
+noremap  
+noremap!  
+noremap <BS> 
+noremap! <BS> 
 
 " mswin.vimを読み込む
 " source $VIMRUNTIME/mswin.vim
@@ -314,6 +311,9 @@ endfunction
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.twig set filetype=html
 au BufNewFile,BufRead *.json.org set filetype=json
+au BufNewFile,BufRead *.coffee set filetype=coffee
+au BufNewFile,BufRead .eslintrc set filetype=javascript
+au BufNewFile,BufRead *.tt set filetype=treetop
 
 
 "------------------------
@@ -403,6 +403,9 @@ noremap [space]f zf
 " re-do
 nnoremap r :redo<CR>
 
+" タグ検索
+nnoremap <C-]> g<C-]>
+
 "------------------------
 " insert
 "------------------------
@@ -419,18 +422,18 @@ inoremap "" ""<Left>
 inoremap `` ``<Left>
 
 "insertmodeでのdel,bs
-"inoremap <C-D> <Del>
-"inoremap <C-G> <BS>
+inoremap <C-D> <Del>
+inoremap <C-G> <BS>
 
 " insertmode抜ける
 inoremap <silent> jj <ESC>
 inoremap <silent> <C-c> <ESC>
 
 " insertmodeでも簡単な移動ができるようにする
-"inoremap <C-j> <Down>
-"inoremap <C-k> <Up>
-"inoremap <C-h> <Left>
-"inoremap <C-l> <Right>
+inoremap <C-h> <Left>
+inoremap <C-j> <Down>
+inoremap <C-k> <Up>
+inoremap <C-l> <Right>
 
 " emacsライクな行頭，行末移動
 inoremap <C-e> <ESC><END>i
@@ -580,13 +583,15 @@ let g:unite_source_menu_menus = {
 \   },
 \}
 "let g:unite_enable_start_insert=1
-nnoremap <silent> <SPACE>uf :<C-u>Unite file<CR>
-nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec<CR>
-nnoremap <silent> <SPACE>um :<C-u>Unite file_mru<CR>
-nnoremap <silent> <SPACE>ub :<C-u>Unite buffer<CR>
-nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru<CR>
-nnoremap <silent> <SPACE>ug :<C-u>Unite grep<CR>
-
+nnoremap <silent> <SPACE>uf :<C-u>Unite file -start-insert<CR>
+nnoremap <silent> <SPACE>ul :<C-u>Unite line -start-insert<CR>
+nnoremap <silent> <SPACE>uo :<C-u>Unite outline -start-insert<CR>
+nnoremap <silent> <SPACE>ut :<C-u>Unite tag -start-insert<CR>
+nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec -start-insert<CR>
+nnoremap <silent> <SPACE>um :<C-u>Unite file_mru -start-insert<CR>
+nnoremap <silent> <SPACE>ub :<C-u>Unite buffer -start-insert<CR>
+nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru -start-insert<CR>
+nnoremap <silent> <SPACE>ug :<C-u>Unite grep -start-insert<CR>
 
 au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
@@ -600,66 +605,66 @@ smap <silent> <C-x><C-e>      :NERDTreeToggle<CR>
 imap <silent> <C-x><C-e> <ESC>:NERDTreeToggle<CR>
 cmap <silent> <C-x><C-e> <C-u>:NERDTreeToggle<CR>
 
+
 " *******************
-" neoComplcache
+" neoComplete
 " *******************
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '¥*ku¥*'
 
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_enable_camel_case_completion = 0
-let g:neocomplcache_enable_underbar_completion = 1
-
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : ''
-    \ }
-
-" Plugin key-mappings.
-"inoremap <expr><C-g>     neocomplcache#undo_completion()
-"inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
-"inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  "return neocomplcache#smart_close_popup() . "\<CR>"
-  return neocomplcache#smart_close_popup()
+ "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+ "" For no inserting <CR> key.
+ ""return pumvisible() ? "\<C-y>" : "\<CR>"
 endfunction
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" <C-h>, <BS>: close popup and delete backword char.
-" inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>
-" inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
+" *******************
+" neoComplcache
+" *******************
 
+"let g:neocomplcache_enable_at_startup = 0
+"let g:neocomplcache_enable_smart_case = 1
+"let g:neocomplcache_enable_camel_case_completion = 0
+"let g:neocomplcache_enable_underbar_completion = 1
 
-" add jsx completion
-" jsx.vim の jsx#complete が自動で呼び出されます
-if !exists("g:neocomplcache_force_omni_patterns")
-    let g:neocomplcache_force_omni_patterns = {}
-endif
+"let g:neocomplcache_min_syntax_length = 3
+"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
-" . を打った時にオムニ補完が呼び出されるようにする
-let g:neocomplcache_force_omni_patterns.jsx = '\.'
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+    "\ 'default' : ''
+    "\ }
 
-" add nodejs completion
-autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
+"" Recommended key-mappings.
+"" <CR>: close popup and save indent.
+""inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"function! s:my_cr_function()
+  ""return neocomplcache#smart_close_popup() . "\<CR>"
+  "return neocomplcache#smart_close_popup()
+"endfunction
 
- let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
- let g:node_usejscomplete = 1
-" automatically open and close the popup menu / preview window
- au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-
+"" <TAB>: completion.
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
 
 
 " ***********************
@@ -749,11 +754,38 @@ let g:indent_guides_enable_on_vim_startup = 1
 " ***********************
 " syntastic
 " ***********************
-let g:syntastic_python_checkers = ['pep8', 'pyflakes']
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_haskell_checkers = ['hlint']
 
 " ***********************
 " vim-autopep8
 " ***********************
 let g:autopep8_disable_show_diff=1
+
+" ***********************
+" vim-jsx
+" ***********************
+let g:jsx_ext_required = 0
+
+" ***********************
+" vim-json
+" ***********************
+let g:vim_json_syntax_conceal = 0
+
+" ***********************
+" vim2hs
+" ***********************
+let g:haskell_conceal = 0
+
+" ***********************
+" dash.vim
+" ***********************
+nmap <silent> <leader>d <Plug>DashSearch
+
+" ***********************
+" vim-go
+" ***********************
+exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 
 " end of .vimrc

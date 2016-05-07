@@ -143,13 +143,13 @@ RPROMPT='[`rprompt-git-current-branch`%~]'
 ;
 
 ### Title (user@hostname) ###
-#case "${TERM}" in
-#kterm*|xterm*|)
-  #precmd() {
-    #echo -ne "\033]0;${USER}@${HOST%%.*}\007"
-  #}
-  #;;
-#esac
+case "${TERM}" in
+(kterm*|xterm*|)
+  precmd() {
+    echo -ne "\033]0;${USER}@${HOST%%.*}\007"
+  }
+  ;;
+esac
 
 ############
 # self settings
@@ -172,10 +172,18 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 
 ### haskell
 ### cabal用パス設定
-export PATH=/Users/masa/Library/Haskell/bin:$PATH
+export PATH=$HOME/Library/Haskell/bin:$PATH
 
 ### python:django-admin
 export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
+
+### pyenv-virtualenv
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+
+### anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
@@ -187,6 +195,10 @@ eval "$(rbenv init -)"
 
 ### phpのバージョン決定
 export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
+
+### gopath
+export GOPATH=$HOME/programming/go
+export PATH=$PATH:$GOPATH/bin
 
 ### boostのpath
 #export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
@@ -223,12 +235,22 @@ alias cd=cdls
 alias chrome="open -a /Applications/Google\ Chrome.app"
 alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
+alias gc=gcloud
+alias vg=vagrant
 
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
 
-
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+### fuck
+alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/masa/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/masa/google-cloud-sdk/completion.zsh.inc'

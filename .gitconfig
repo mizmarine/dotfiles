@@ -1,6 +1,5 @@
-[user]
-    name = masa
-    email = masa@cyber.t.u-tokyo.ac.jp
+[include]
+    path = ~/.gitconfig.local
 
 [color]
     ui = auto
@@ -12,7 +11,7 @@
     default = tracking
 
 [core]
-    excludesfile = /Users/masa/.gitignore
+    excludesfile = ~/.gitignore.local
 
 [alias]
     # flow
@@ -64,8 +63,8 @@
     la = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
 
     #config
-    cfl = config --edit
-    cfg = config --global --edit
+    cf = config
+    cfg = config --global
 
     #hub
     se = browse
@@ -74,10 +73,10 @@
     is = issue
     ic = issue create
 
-
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
     path =
+
 [mergetool "sourcetree"]
     cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
     trustExitCode = true
