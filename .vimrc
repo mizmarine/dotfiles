@@ -74,8 +74,6 @@ NeoBundle 'davidhalter/jedi-vim' "python補完
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
 NeoBundle 'jelera/vim-javascript-syntax' "javascript
-"NeoBundle "pangloss/vim-javascript"
-"NeoBundle "mxw/vim-jsx"
 NeoBundle 'elzr/vim-json' "json
 NeoBundle "kchmck/vim-coffee-script" "coffee scropt
 NeoBundle "digitaltoad/vim-jade" "jade
@@ -99,18 +97,7 @@ NeoBundle 'tell-k/vim-autopep8'
 NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "tomasr/molokai"
 
-" utility
-NeoBundle "szw/vim-tags"
-NeoBundle "rizzatti/dash.vim"
-
 call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
 
 "------------------------
 " システム設定
@@ -381,12 +368,9 @@ nnoremap <C-L> <C-W>l
 noremap <C-N> :bnext<CR>
 noremap <C-P> :bprevious<CR>
 
-" タブ移動
-nnoremap <S-Tab> gT
-nnoremap <Tab><Tab> gt
-for i in range(1, 9)
-    execute 'nnoremap <Tab>' . i . ' ' . i . 'gt'
-endfor
+" indent
+nnoremap <S-Tab> <<
+nnoremap <Tab> >>
 
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
