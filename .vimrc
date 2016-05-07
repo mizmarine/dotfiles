@@ -66,7 +66,7 @@ NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle "jiangmiao/simple-javascript-indenter"
 
 " completion
-NeoBundle "teramako/jscomplete-vim" "js補完
+"NeoBundle "teramako/jscomplete-vim" "js補完
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 
 " syntax highlight
@@ -368,12 +368,9 @@ nnoremap <C-L> <C-W>l
 noremap <C-N> :bnext<CR>
 noremap <C-P> :bprevious<CR>
 
-" タブ移動
-nnoremap <S-Tab> gT
-nnoremap <Tab><Tab> gt
-for i in range(1, 9)
-    execute 'nnoremap <Tab>' . i . ' ' . i . 'gt'
-endfor
+" indent
+nnoremap <S-Tab> <<
+nnoremap <Tab> >>
 
 " ESCを二回押すことでハイライトを消す
 nmap <silent> <Esc><Esc> :nohlsearch<CR>
