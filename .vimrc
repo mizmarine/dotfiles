@@ -89,6 +89,7 @@ NeoBundle "nathanaelkane/vim-indent-guides" "indent level
 NeoBundle "dag/vim2hs" "haskell
 NeoBundle "fatih/vim-go" "go
 NeoBundle 'derekwyatt/vim-scala' "scala
+NeoBundle "uarun/vim-protobuf"
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
@@ -717,7 +718,7 @@ let g:quickrun_config.processing = {
 " ***********************
 " nerdcommenter
 " ***********************
-nmap <Leader>/ <Plug>NERDCommenterToggle
+nmap ct <Plug>NERDCommenterToggle
 
 " ***********************
 " autodate.vim
