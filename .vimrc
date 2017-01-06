@@ -69,7 +69,7 @@ NeoBundle "jiangmiao/simple-javascript-indenter"
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 NeoBundle "eagletmt/neco-ghc" "haskell補完
 NeoBundle "nsf/gocode" "go補完
-NeoBundle 'davidhalter/jedi-vim' "python補完
+"NeoBundle 'davidhalter/jedi-vim' "python補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
