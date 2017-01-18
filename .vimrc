@@ -88,6 +88,7 @@ NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
 NeoBundle "nathanaelkane/vim-indent-guides" "indent level
 NeoBundle "dag/vim2hs" "haskell
 NeoBundle "fatih/vim-go" "go
+NeoBundle 'derekwyatt/vim-scala' "scala
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
@@ -314,6 +315,7 @@ au BufNewFile,BufRead *.json.org set filetype=json
 au BufNewFile,BufRead *.coffee set filetype=coffee
 au BufNewFile,BufRead .eslintrc set filetype=javascript
 au BufNewFile,BufRead *.tt set filetype=treetop
+au BufNewFile,BufRead *.scala set filetype=scala
 
 
 "------------------------
