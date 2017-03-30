@@ -183,6 +183,8 @@ export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:
 ### pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
+### scala
+export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
 ### anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -258,3 +260,9 @@ source '/Users/masa/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/masa/google-cloud-sdk/completion.zsh.inc'
+
+# mentaico
+export VM_IP="10.100.2.204"
+
+# neovim
+export XDG_CONFIG_HOME="$HOME/.config"

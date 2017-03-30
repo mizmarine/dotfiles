@@ -90,6 +90,7 @@ NeoBundle "dag/vim2hs" "haskell
 NeoBundle "fatih/vim-go" "go
 NeoBundle 'derekwyatt/vim-scala' "scala
 NeoBundle "uarun/vim-protobuf"
+NeoBundle "derekwyatt/vim-scala"
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
