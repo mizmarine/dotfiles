@@ -162,6 +162,7 @@ esac
 #export NODE_PATH=$npm_dir
 #export PATH=$PATH:$NODE_PATH
 #nvm use v0.10.26
+export PATH=`yarn global bin`:$PATH
 
 # nodebrew設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
