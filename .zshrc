@@ -255,14 +255,14 @@ export PATH="/usr/local/heroku/bin:$PATH"
 alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
 
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/masa/google-cloud-sdk/path.zsh.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/Users/masa/google-cloud-sdk/completion.zsh.inc'
-
 # mentaico
 export VM_IP="10.100.2.204"
 
 # neovim
 export XDG_CONFIG_HOME="$HOME/.config"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'; fi
