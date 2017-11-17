@@ -8,3 +8,4 @@ tags
 *-checkpoint.ipynb
 .python-version
 ruby/rbenv/*
+.idea

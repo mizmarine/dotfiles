@@ -1,3 +1,5 @@
+.PHONY: init neobundle
+
 init:
 	ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 	ln -s ~/dotfiles/.vimrc ~/.vimrc
