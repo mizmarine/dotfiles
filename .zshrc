@@ -238,6 +238,7 @@ alias rm=rmtrash
 alias rmswp="rm ~/.vim/swp/*.swp"
 alias gc=gcloud
 alias vg=vagrant
+alias rep='cd `ghq list -p | peco`'
 
 alias memo="makeMemo"
 alias memols="ls ~/Dropbox/memo"
