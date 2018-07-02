@@ -87,7 +87,7 @@ autoload -U colors; colors
 # 一般ユーザ時
 #
 FACE="(｀・ω・´)"
-tmp_prompt="%{${fg[yellow]}%}$FACEっ%{${fg[green]}%}旦%{${reset_color}%}"
+tmp_prompt="%{${fg[yellow]}%}$FACEっ%{${fg[green]}%}旦%{${reset_color}%} "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 # tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
@@ -186,20 +186,14 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 ### scala
 export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
-### anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-### ruby設定
-eval "$(rbenv init -)"
-
-### phpのバージョン決定
-export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
+### anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 ### gopath
 export GOPATH=$HOME/programming
@@ -266,3 +260,6 @@ if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'; fi
+
+# java home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
