@@ -60,11 +60,6 @@ bindkey "^N" history-beginning-search-forward-end
 # すべてのヒストリを表示する
 function history-all { history -E 1 }
 
-# arduinoパス設定
-#export ARDUINO_DIR = /Applications/Arduino.app/Contents/Resources/Java
-#export ARDMK_DIR = /usr/local
-
-
 # ------------------------------
 # Look And Feel Settings
 # ------------------------------
@@ -158,20 +153,10 @@ esac
 ############
 
 ### node設定
-#[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-#nvm use default
-#npm_dir=${NVM_PATH}_modules
-#export NODE_PATH=$npm_dir
-#export PATH=$PATH:$NODE_PATH
-#nvm use v0.10.26
 export PATH=`yarn global bin`:$PATH
 
 # nodebrew設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-### python:virtualenv
-# source /usr/local/bin/virtualenvwrapper.sh
-# export PYTHONPATH=/usr/local/Cellar/pyqt/4.10.3/lib/python2.7/site-packages:/usr/local/Cellar/sip/4.15.3/lib/python2.7/site-packages:$PYTHONPATH
 
 ### haskell
 ### cabal用パス設定
@@ -199,15 +184,8 @@ eval "$(anyenv init -)"
 export GOPATH=$HOME/programming
 export PATH=$PATH:$GOPATH/bin
 
-### boostのpath
-#export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
-
-### z.sh利用
-#. `brew --prefix`/etc/profile.d/z.sh
-
 ### for latex
 export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
-
 
 #############
 # functions #
@@ -238,22 +216,7 @@ alias gc=gcloud
 alias vg=vagrant
 alias rep='cd `ghq list -p | peco`'
 
-alias memo="makeMemo"
-alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### fuck
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-
-
-# mentaico
-export VM_IP="10.100.2.204"
-
-# neovim
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/path.zsh.inc'; fi
