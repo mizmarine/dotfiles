@@ -60,11 +60,6 @@ bindkey "^N" history-beginning-search-forward-end
 # すべてのヒストリを表示する
 function history-all { history -E 1 }
 
-# arduinoパス設定
-#export ARDUINO_DIR = /Applications/Arduino.app/Contents/Resources/Java
-#export ARDMK_DIR = /usr/local
-
-
 # ------------------------------
 # Look And Feel Settings
 # ------------------------------
@@ -85,7 +80,9 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 autoload -U colors; colors
 
 # 一般ユーザ時
-tmp_prompt="%{${fg[cyan]}%}%n%# %{${reset_color}%}"
+#
+FACE="(｀・ω・´)"
+tmp_prompt="%{${fg[yellow]}%}$FACEっ%{${fg[green]}%}旦%{${reset_color}%} "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 # tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
 tmp_sprompt="%{${fg[yellow]}%}%r is correct? [Yes, No, Abort, Edit]:%{${reset_color}%}"
@@ -156,20 +153,10 @@ esac
 ############
 
 ### node設定
-#[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh
-#nvm use default
-#npm_dir=${NVM_PATH}_modules
-#export NODE_PATH=$npm_dir
-#export PATH=$PATH:$NODE_PATH
-#nvm use v0.10.26
 export PATH=`yarn global bin`:$PATH
 
 # nodebrew設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-### python:virtualenv
-# source /usr/local/bin/virtualenvwrapper.sh
-# export PYTHONPATH=/usr/local/Cellar/pyqt/4.10.3/lib/python2.7/site-packages:/usr/local/Cellar/sip/4.15.3/lib/python2.7/site-packages:$PYTHONPATH
 
 ### haskell
 ### cabal用パス設定
@@ -181,35 +168,24 @@ export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:
 ### pyenv-virtualenv
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
-
-### anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
+### scala
+export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-### ruby設定
-eval "$(rbenv init -)"
-
-### phpのバージョン決定
-export PATH=/usr/local/Cellar/php54/5.4.20/bin:$PATH
+### anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 ### gopath
-export GOPATH=$HOME/programming/go
+export GOPATH=$HOME/programming
 export PATH=$PATH:$GOPATH/bin
-
-### boostのpath
-#export CPLUS_INCLUDE_PATH=/usr/local/Cellar/boost/1.55.0/include:$CPLUS_INCLUDE_PATH
-
-### z.sh利用
-#. `brew --prefix`/etc/profile.d/z.sh
 
 ### for latex
 export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
-
 
 #############
 # functions #
@@ -240,19 +216,13 @@ alias gc=gcloud
 alias vg=vagrant
 alias rep='cd `ghq list -p | peco`'
 
-alias memo="makeMemo"
-alias memols="ls ~/Dropbox/memo"
 alias vim=/usr/local/bin/vim
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### fuck
-alias fuck='eval $(thefuck $(fc -ln -1 | tail -n 1)); fc -R'
-
-
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/masa/google-cloud-sdk/path.zsh.inc'
+if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-source '/Users/masa/google-cloud-sdk/completion.zsh.inc'
+if [ -f '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'; fi
+
+# java home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home

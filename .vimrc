@@ -69,7 +69,7 @@ NeoBundle "jiangmiao/simple-javascript-indenter"
 NeoBundle "myhere/vim-nodejs-complete" "node補完
 NeoBundle "eagletmt/neco-ghc" "haskell補完
 NeoBundle "nsf/gocode" "go補完
-NeoBundle 'davidhalter/jedi-vim' "python補完
+"NeoBundle 'davidhalter/jedi-vim' "python補完
 
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
@@ -89,6 +89,8 @@ NeoBundle "nathanaelkane/vim-indent-guides" "indent level
 NeoBundle "dag/vim2hs" "haskell
 NeoBundle "fatih/vim-go" "go
 NeoBundle 'derekwyatt/vim-scala' "scala
+NeoBundle "uarun/vim-protobuf"
+NeoBundle "derekwyatt/vim-scala"
 
 " syntax checker
 NeoBundle 'scrooloose/syntastic'
@@ -717,7 +719,7 @@ let g:quickrun_config.processing = {
 " ***********************
 " nerdcommenter
 " ***********************
-nmap <Leader>/ <Plug>NERDCommenterToggle
+nmap ct <Plug>NERDCommenterToggle
 
 " ***********************
 " autodate.vim
