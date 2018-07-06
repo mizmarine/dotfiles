@@ -181,7 +181,7 @@ export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
 ### gopath
-export GOPATH=$HOME/programming
+export GOPATH=$HOME/programming/go
 export PATH=$PATH:$GOPATH/bin
 
 ### for latex
