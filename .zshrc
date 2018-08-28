@@ -199,7 +199,7 @@ function cdls(){
 function git(){
   hub "$@"
 }
-
+compdef hub=git
 #alias
 
 alias zshconfig="vim ~/.zshrc"
