@@ -83,4 +83,4 @@
 
 [ghq]
     root = ~/ghq
-    root = ~/programming/src
+    root = ~/programming/go/src
