@@ -224,8 +224,5 @@ if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'; fi
 
-# java home
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_111.jdk/Contents/Home
-
 # aws completion
 source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
