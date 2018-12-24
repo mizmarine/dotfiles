@@ -81,7 +81,7 @@ autoload -U colors; colors
 
 # 一般ユーザ時
 #
-FACE="(｀・ω・')"
+FACE="::"
 tmp_prompt="%{${fg[yellow]}%}$FACEっ%{${fg[green]}%}旦%{${reset_color}%} "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 # tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
