@@ -35,3 +35,4 @@ brew/install: brew/update
 	$(HOMEBREW) install awscli
 	$(HOMEBREW) install mysql
 	$(HOMEBREW) install pyenv
+	$(HOMEBREW) install pipenv
