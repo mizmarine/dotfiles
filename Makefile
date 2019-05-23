@@ -31,6 +31,7 @@ brew/install: brew/update
 	$(HOMEBREW) install hub
 	$(HOMEBREW) install tig
 	$(HOMEBREW) install jq
+	$(HOMEBREW) install ag
 	$(HOMEBREW) install peco
 	$(HOMEBREW) install awscli
 	$(HOMEBREW) install mysql
