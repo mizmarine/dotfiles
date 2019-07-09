@@ -37,3 +37,4 @@ brew/install: brew/update
 	$(HOMEBREW) install mysql
 	$(HOMEBREW) install pyenv
 	$(HOMEBREW) install pipenv
+	$(HOMEBREW) install goenv
