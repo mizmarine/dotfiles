@@ -184,6 +184,9 @@ eval "$(anyenv init -)"
 export GOPATH=$HOME/programming/go
 export PATH=$PATH:$GOPATH/bin
 
+export PATH="$HOME/.goenv/bin:$PATH"
+eval "$(goenv init -)"
+
 ### for latex
 export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
 
