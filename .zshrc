@@ -171,6 +171,9 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 ### scala
 export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
+### java(for scala)
+export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
+
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
