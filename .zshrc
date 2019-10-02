@@ -81,7 +81,7 @@ autoload -U colors; colors
 
 # 一般ユーザ時
 #
-FACE="(｀・ω・')"
+FACE="::"
 tmp_prompt="%{${fg[yellow]}%}$FACEっ%{${fg[green]}%}旦%{${reset_color}%} "
 tmp_prompt2="%{${fg[cyan]}%}%_> %{${reset_color}%}"
 # tmp_rprompt="%{${fg[green]}%}[%~]%{${reset_color}%}"
@@ -170,6 +170,9 @@ if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -
 
 ### scala
 export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
+
+### java(for scala)
+export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
 
 ### pyenv
 export PYENV_ROOT="$HOME/.pyenv"
