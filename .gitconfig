@@ -84,3 +84,6 @@
 [ghq]
     root = ~/ghq
     root = ~/programming/go/src
+[credential]
+	helper = !aws codecommit credential-helper $@
+	UseHttpPath = true
