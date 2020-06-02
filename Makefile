@@ -38,3 +38,5 @@ brew/install: brew/update
 	$(HOMEBREW) install pyenv
 	$(HOMEBREW) install pipenv
 	$(HOMEBREW) install goenv
+	$(HOMEBREW) cask install adoptopenjdk8
+

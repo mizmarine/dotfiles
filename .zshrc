@@ -152,9 +152,6 @@ esac
 # self settings
 ############
 
-### node設定
-export PATH=`yarn global bin`:$PATH
-
 # nodebrew設定
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 
@@ -179,19 +176,12 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-### anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
-
 ### gopath
 export GOPATH=$HOME/programming/go
 export PATH=$PATH:$GOPATH/bin
 
 export PATH="$HOME/.goenv/bin:$PATH"
 eval "$(goenv init -)"
-
-### for latex
-export BSTINPUTS=/usr/local/texlive/2013/texmf-dist/pbibtex/bst:$BSTINPUTS
 
 #############
 # functions #
