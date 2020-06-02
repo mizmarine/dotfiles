@@ -38,66 +38,24 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'thinca/vim-quickrun'
 
-" git
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'gregsexton/gitv'
 
 " filer
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/unite-outline'
 NeoBundle "scrooloose/nerdtree"
-NeoBundle 'tsukkee/unite-tag'
 
 " statusline
 NeoBundle "itchyny/lightline.vim"
 
 " edit
 NeoBundle "tpope/vim-surround"
-NeoBundle "mattn/emmet-vim" "Zen-coding
-NeoBundle "scrooloose/nerdcommenter"
-NeoBundle "autodate.vim"
-NeoBundle "vim-scripts/PDV--phpDocumentor-for-Vim"
-NeoBundle "h1mesuke/vim-alignta"
 NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'vim-scripts/vim-niji'
 
-" indent
-NeoBundle "jiangmiao/simple-javascript-indenter"
-
-" completion
-NeoBundle "myhere/vim-nodejs-complete" "node補完
-NeoBundle "eagletmt/neco-ghc" "haskell補完
-NeoBundle "nsf/gocode" "go補完
-"NeoBundle 'davidhalter/jedi-vim' "python補完
-
 " syntax highlight
 NeoBundle "plasticboy/vim-markdown" "markdown
-NeoBundle 'jelera/vim-javascript-syntax' "javascript
 NeoBundle 'elzr/vim-json' "json
-NeoBundle "kchmck/vim-coffee-script" "coffee scropt
-NeoBundle "digitaltoad/vim-jade" "jade
-NeoBundle "groenewege/vim-less" "less
-NeoBundle "tikhomirov/vim-glsl" "GLSL
-NeoBundle "sophacles/vim-processing" "processing(.pde)
-NeoBundle "sudar/vim-arduino-syntax" "arduino(.ino)
-NeoBundle "jcf/vim-latex" "tex
-NeoBundle "rodjek/vim-puppet" " puppet
-NeoBundle "leafgarland/typescript-vim" " typescript
-NeoBundle "Glench/Vim-Jinja2-Syntax" "jinja2
-NeoBundle "nathanaelkane/vim-indent-guides" "indent level
-NeoBundle "dag/vim2hs" "haskell
-NeoBundle "fatih/vim-go" "go
-NeoBundle 'derekwyatt/vim-scala' "scala
 NeoBundle "uarun/vim-protobuf"
-NeoBundle "derekwyatt/vim-scala"
-
-" syntax checker
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tell-k/vim-autopep8'
 
 " color scheme
-NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "tomasr/molokai"
 
 call neobundle#end()
