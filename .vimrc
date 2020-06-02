@@ -1,64 +1,33 @@
-" Note: Skip initialization for vim-tiny or vim-small.
-if !1 | finish | endif
-
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
-
-NeoBundle 'Shougo/neocomplcache.vim'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-
-" system
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'make -f make_mingw32.mak',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'thinca/vim-quickrun'
-
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
 
 " filer
-NeoBundle "scrooloose/nerdtree"
+Plug 'scrooloose/nerdtree'
 
 " statusline
-NeoBundle "itchyny/lightline.vim"
+Plug 'itchyny/lightline.vim'
 
 " edit
-NeoBundle "tpope/vim-surround"
-NeoBundle 'editorconfig/editorconfig-vim'
-NeoBundle 'vim-scripts/vim-niji'
+Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'vim-scripts/vim-niji'
 
 " syntax highlight
-NeoBundle "plasticboy/vim-markdown" "markdown
-NeoBundle 'elzr/vim-json' "json
-NeoBundle "uarun/vim-protobuf"
+Plug 'plasticboy/vim-markdown'
+Plug 'elzr/vim-json'
+Plug 'uarun/vim-protobuf'
 
 " color scheme
-NeoBundle "tomasr/molokai"
+Plug 'tomasr/molokai'
 
-call neobundle#end()
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
 
 "------------------------
 " システム設定
@@ -74,7 +43,6 @@ noremap! <BS> 
 " behave mswin
 
 " ファイルの上書きの前にバックアップを作る/作らない
-" B
 " set writebackupを指定してもオプション 'backup' がオンでない限り、
 " バックアップは上書きに成功した後に削除される。
 set nowritebackup
@@ -207,7 +175,6 @@ set shiftwidth=4
 "autocmd! FileType javascript setlocal sw=4 ts=4 sts=0
 autocmd! FileType html setlocal sw=2 ts=2 sts=0
 
-
 " Cインデントの設定
 set cinoptions+=:0
 
@@ -263,20 +230,12 @@ function! s:Byte2hex(bytes)
 endfunction
 
 "------------------------
-" diff
-"------------------------
-
-"------------------------
 " filetype
 "------------------------
 au BufNewFile,BufRead *.ejs set filetype=html
 au BufNewFile,BufRead *.twig set filetype=html
 au BufNewFile,BufRead *.json.org set filetype=json
-au BufNewFile,BufRead *.coffee set filetype=coffee
 au BufNewFile,BufRead .eslintrc set filetype=javascript
-au BufNewFile,BufRead *.tt set filetype=treetop
-au BufNewFile,BufRead *.scala set filetype=scala
-
 
 "------------------------
 " folding
@@ -495,67 +454,9 @@ if has('syntax')
   call ZenkakuSpace()
 endif
 
-
-""""""""""""""""""""""""""""""
-" grep結果のQuickfixのウィンドウから enterで対象行に飛べるようにする
-""""""""""""""""""""""""""""""
-function! OpenModifiableQF()
-        cw
-        set modifiable
-        set nowrap
-endfunction
-
-autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
-
-"-------------------------
-" todo List
-"-------------------------
-abbreviate ti - []
-
-nnoremap <buffer> <Leader><Leader> :call ToggleCheckbox()<CR>
-
-function! ToggleCheckbox()
-  let l:line = getline('.')
-  if l:line =~ '\-\s\[\s\]'
-    let l:result = substitute(l:line, '-\s\[\s\]', '- [x]', '')
-    call setline('.', l:result)
-  elseif l:line =~ '\-\s\[x\]'
-    let l:result = substitute(l:line, '-\s\[x\]', '- [ ]', '')
-    call setline('.', l:result)
-  end
-endfunction
-
 "------------------------
 " plugin
 "------------------------
-
-"********************
-" unite.vim
-"********************
-let g:unite_source_menu_menus = {
-\   "shortcut" : {
-\       "description" : "sample unite-menu",
-\       "command_candidates" : [
-\           ["edit vimrc", "edit $MYVIMRC"],
-\           ["edit gvimrc", "edit $MYGVIMRC"],
-\           ["unite-file_mru", "Unite file_mru"],
-\           ["Unite Beautiful Attack", "Unite -auto-preview colorscheme"],
-\           ["unite-output:message", "Unite output:message"],
-\       ],
-\   },
-\}
-"let g:unite_enable_start_insert=1
-nnoremap <silent> <SPACE>uf :<C-u>Unite file -start-insert<CR>
-nnoremap <silent> <SPACE>ul :<C-u>Unite line -start-insert<CR>
-nnoremap <silent> <SPACE>uo :<C-u>Unite outline -start-insert<CR>
-nnoremap <silent> <SPACE>ut :<C-u>Unite tag -start-insert<CR>
-nnoremap <silent> <SPACE>ur :<C-u>Unite file_rec -start-insert<CR>
-nnoremap <silent> <SPACE>um :<C-u>Unite file_mru -start-insert<CR>
-nnoremap <silent> <SPACE>ub :<C-u>Unite buffer -start-insert<CR>
-nnoremap <silent> <SPACE>uu :<C-u>Unite file buffer file_mru -start-insert<CR>
-nnoremap <silent> <SPACE>ug :<C-u>Unite grep -start-insert<CR>
-
-au FileType unite nnoremap <silent> <buffer> <expr> <C-K> unite#do_action('vsplit')
 
 "********************
 " NERDTREE
@@ -567,187 +468,8 @@ smap <silent> <C-x><C-e>      :NERDTreeToggle<CR>
 imap <silent> <C-x><C-e> <ESC>:NERDTreeToggle<CR>
 cmap <silent> <C-x><C-e> <C-u>:NERDTreeToggle<CR>
 
-
-" *******************
-" neoComplete
-" *******************
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '¥*ku¥*'
-
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
- "return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
- "" For no inserting <CR> key.
- ""return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" *******************
-" neoComplcache
-" *******************
-
-"let g:neocomplcache_enable_at_startup = 0
-"let g:neocomplcache_enable_smart_case = 1
-"let g:neocomplcache_enable_camel_case_completion = 0
-"let g:neocomplcache_enable_underbar_completion = 1
-
-"let g:neocomplcache_min_syntax_length = 3
-"let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-"" Define dictionary.
-"let g:neocomplcache_dictionary_filetype_lists = {
-    "\ 'default' : ''
-    "\ }
-
-"" Recommended key-mappings.
-"" <CR>: close popup and save indent.
-""inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-"function! s:my_cr_function()
-  ""return neocomplcache#smart_close_popup() . "\<CR>"
-  "return neocomplcache#smart_close_popup()
-"endfunction
-
-"" <TAB>: completion.
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"inoremap <expr><S-TAB>  pumvisible() ? "\<C-p>" : "\<S-TAB>"
-
-
-" ***********************
-" neosnippet
-" ***********************
-
-
-" Plugin key-mappings.
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-"imap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-"smap <expr><TAB> neosnippet#expandable() <Bar><bar> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-
-" Tell Neosnippet about the other snippets
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
-" ***********************
-" vim-coffee-script
-" ***********************
-"autocmd BufWritePost *.coffee silent make!
-autocmd BufWritePost *.coffee silent make! --bare
-
-
-" ***********************
-" vim-quickrun
-" ***********************
-set splitright
-nmap <C-r> :QuickRun<CR>
-
-let g:quickrun_config = {}
-let g:quickrun_config.processing = {
-        \     'command':'processing-java',
-        \     'exec':'%c --sketch=$PWD/ --output=/Library/Processing --run --force',
-        \   }
-
-" ***********************
-" nerdcommenter
-" ***********************
-nmap ct <Plug>NERDCommenterToggle
-
-" ***********************
-" autodate.vim
-" ***********************
-let autodate_format="%Y_%m_%d_%T"
-
-" ***********************
-" vim-latex.vim
-" ***********************
-let tex_flavor = 'latex'
-set grepprg=grep\ -nH\ $*
-set shellslash
-let g:Tex_DefaultTargetFormat = 'pdf' "Macの人はデフォルトでpdfなので必要ない その他のOSの人はデフォルトがdviなので必要
-let g:Tex_CompileRule_dvi = 'platex --interaction=nonstopmode $*'
-let g:Tex_CompileRule_pdf = 'dvipdfmx $*.dvi'
-let g:Tex_FormatDependency_pdf = 'dvi,pdf'
-let g:Tex_MultipleCompileFormats = 'pdf'
-
-" ***********************
-" PDV--phpDocumentor-for-Vim
-" ***********************
-nnoremap <C-D> :call PhpDocSingle()<CR>
-vnoremap <C-D> :call PhpDocRange()<CR>
-
-
-" ***********************
-" vim-indent-guides
-" ***********************
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,ColorScheme * :hi IndentGuidesOdd   ctermbg=234
-autocmd VimEnter,ColorScheme * :hi IndentGuidesEven  ctermbg=234
-let g:indent_guides_enable_on_vim_startup = 1
-
-" ***********************
-" syntastic
-" ***********************
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_haskell_checkers = ['hlint']
-
-" ***********************
-" vim-autopep8
-" ***********************
-let g:autopep8_disable_show_diff=1
-
-" ***********************
-" vim-jsx
-" ***********************
-let g:jsx_ext_required = 0
-
 " ***********************
 " vim-json
 " ***********************
 let g:vim_json_syntax_conceal = 0
-
-" ***********************
-" vim2hs
-" ***********************
-let g:haskell_conceal = 0
-
-" ***********************
-" dash.vim
-" ***********************
-nmap <silent> <leader>d <Plug>DashSearch
-
-" ***********************
-" vim-go
-" ***********************
-exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-
 " end of .vimrc
