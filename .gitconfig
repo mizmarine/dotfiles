@@ -14,14 +14,9 @@
     excludesfile = ~/.gitignore.local
 
 [alias]
-    # flow
-    fl = flow
-
     # status
     st  = status
     sh  = show
-    sb  = show-branch
-    rso = remote show origin
 
     # diff
     df = diff          # index - working tree : diff
@@ -36,29 +31,21 @@
     ca = commit --amend
     ss = stash
 
-    # branch
-    br = branch
-    co = checkout
-    mg = merge --no-ff --no-edit
-    tg = tag
-    sw = switch
-
     # code
     rs = restore
 
-    # merge
+    # branch
+    br = branch
+    sw = switch
+    mg = merge --no-ff --no-edit
     rb = rebase
     rv = revert --no-edit
 
     # remote
     ft   = fetch
     pl   = pull
-    plom = pull origin master
-    plod = pull origin dev
-
     ps   = push -u
-    psom = push -u origin master
-    psod = push -u origin dev
+    plom = pull origin master
 
     # log
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
@@ -67,13 +54,6 @@
     #config
     cf = config
     cfg = config --global
-
-    #hub
-    se = browse
-    si = browse -- issues
-    pr = pull-request
-    is = issue
-    ic = issue create
 
 [difftool "sourcetree"]
     cmd = opendiff \"$LOCAL\" \"$REMOTE\"
