@@ -41,12 +41,14 @@
     co = checkout
     mg = merge --no-ff --no-edit
     tg = tag
+    sw = switch
+
+    # code
+    rs = restore
 
     # merge
     rb = rebase
     rv = revert --no-edit
-    rs = reset
-    rl = reflog
 
     # remote
     ft   = fetch
