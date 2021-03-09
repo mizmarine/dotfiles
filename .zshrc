@@ -159,12 +159,6 @@ export PATH=$HOME/.nodebrew/current/bin:$PATH
 ### cabal用パス設定
 export PATH=$HOME/Library/Haskell/bin:$PATH
 
-### python:django-admin
-export PATH=/Users/masa/.virtualenvs/py2/lib/python2.7/site-packages/django/bin:$PATH
-
-### pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-
 ### scala
 export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
@@ -174,17 +168,13 @@ export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
 ### java
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
-### pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
 ### gopath
 export GOPATH=$HOME/programming/go
 export PATH=$PATH:$GOPATH/bin
 
-export PATH="$HOME/.goenv/bin:$PATH"
-eval "$(goenv init -)"
+#### anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
 
 #############
 # functions #
