@@ -176,6 +176,14 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
+### anyenv-pyenv
+export PYENV_ROOT="$HOME/.anyenv/envs/pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 #############
 # functions #
 #############
@@ -203,12 +211,6 @@ alias rep='cd `ghq list -p | peco`'
 
 alias vim=/usr/local/bin/vim
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/m-izumi/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/m-izumi/google-cloud-sdk/completion.zsh.inc'; fi
-
 # aws completion
 source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 #
@@ -216,3 +218,7 @@ source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.7.1/functions)
 autoload -Uz compinit && compinit
+
+# gcloud
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/"
