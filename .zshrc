@@ -169,8 +169,8 @@ export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 ### gopath
-export GOPATH=$HOME/programming/go
-export PATH=$PATH:$GOPATH/bin
+#export GOPATH=$HOME/programming/go
+#export PATH=$PATH:$GOPATH/bin
 
 #### anyenv
 export PATH="$HOME/.anyenv/bin:$PATH"
@@ -183,6 +183,11 @@ eval "$(pyenv init --path)"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+### anyenv-goenv
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+
 
 #############
 # functions #
