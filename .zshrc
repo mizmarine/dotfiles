@@ -185,7 +185,8 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 ### anyenv-goenv
-export GOENV_ROOT="$HOME/.goenv"
+export GOENV_ROOT="$HOME/.anyenv/envs/goenv"
+#export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 
 
