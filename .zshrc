@@ -221,9 +221,11 @@ source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 #
 # Load completion files from the ~/.zsh directory.
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh /usr/local/share/zsh/site-functions /usr/share/zsh/site-functions /usr/share/zsh/5.8.1/functions /usr/local/share/zsh/zsh-completions)
+fpath=(~/.zsh /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions /usr/local/share/zsh/zsh-completions)
 autoload -Uz compinit && compinit
 
 # gcloud
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
+export PATH="/usr/local/opt/ffmpeg@4/bin:$PATH"
