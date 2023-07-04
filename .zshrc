@@ -163,7 +163,7 @@ export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH="$HOME/programming/scala/scala-2.12.1/bin:$PATH"
 
 ### java(for scala)
-export JAVA_HOME=`/usr/libexec/java_home -v "1.8"`
+export JAVA_HOME=`/usr/libexec/java_home -v "20"`
 
 ### java
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
