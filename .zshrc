@@ -229,4 +229,10 @@ autoload -Uz compinit && compinit
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-export PATH="/usr/local/opt/ffmpeg@4/bin:$PATH"
+#export PATH="/usr/local/opt/ffmpeg@4/bin:$PATH"
+
+# aws cli profile
+export AWS_PROFILE=regali-mfa
+export REGALI_AWS_MFA_PROFILE=regali-mfa
+export REGALI_AWS_MFA_ARN=arn:aws:iam::992404020078:mfa/m-izumi
+#export REGALI_AWS_MFA_ARN=arn:aws:iam::992404020078:mfa/authy
