@@ -29,6 +29,7 @@ brew/install: brew/update
 	$(HOMEBREW) install wget
 	$(HOMEBREW) install ghq
 	$(HOMEBREW) install hub
+	$(HOMEBREW) install gh
 	$(HOMEBREW) install tig
 	$(HOMEBREW) install jq
 	$(HOMEBREW) install ag

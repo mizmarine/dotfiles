@@ -1,4 +1,4 @@
 [user]
-    name = masa
-    email = masa.guruto@gmail.com
+    name = mizmarine
+    email = masa.guruto+marine@gmail.com
 
