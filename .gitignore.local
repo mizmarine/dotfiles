@@ -10,3 +10,5 @@ tags
 ruby/rbenv/*
 .idea
 python.iml
+settings.local.json
+.serena

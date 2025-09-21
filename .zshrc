@@ -8,6 +8,9 @@
 # ------------------------------
 # settings
 # ------------------------------
+
+# homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=.:/usr/local/bin:$PATH # brew で installしたプログラムを利用する
 
 export EDITOR=vim        # エディタをvimに設定
@@ -188,7 +191,7 @@ fi
 export GOENV_ROOT="$HOME/.anyenv/envs/goenv"
 #export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
-
+export PATH="$GOENV_ROOT/shims:$PATH"
 
 #############
 # functions #
@@ -209,7 +212,7 @@ alias op=open
 alias ll="ls -la"
 alias cd=cdls
 alias chrome="open -a /Applications/Google\ Chrome.app"
-alias rm=rmtrash
+alias rm=trash
 alias rmswp="rm ~/.vim/swp/*.swp"
 alias gc=gcloud
 alias vg=vagrant
@@ -218,16 +221,16 @@ alias rep='cd `ghq list -p | peco`'
 alias vim=/usr/local/bin/vim
 
 # aws completion
-source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
+#source /usr/local/share/zsh/site-functions/aws_zsh_completer.sh
 #
 # Load completion files from the ~/.zsh directory.
-zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
-fpath=(~/.zsh /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions /usr/local/share/zsh/zsh-completions)
-autoload -Uz compinit && compinit
+#zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+#fpath=(~/.zsh /usr/local/share/zsh/site-functions /usr/local/share/zsh/functions /usr/local/share/zsh/zsh-completions)
+#autoload -Uz compinit && compinit
 
 # gcloud
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+#source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 #export PATH="/usr/local/opt/ffmpeg@4/bin:$PATH"
 
@@ -236,3 +239,5 @@ export AWS_PROFILE=regali-mfa
 export REGALI_AWS_MFA_PROFILE=regali-mfa
 export REGALI_AWS_MFA_ARN=arn:aws:iam::992404020078:mfa/m-izumi
 #export REGALI_AWS_MFA_ARN=arn:aws:iam::992404020078:mfa/authy
+
+
