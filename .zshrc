@@ -171,11 +171,10 @@ export JAVA_HOME=`/usr/libexec/java_home -v "20"`
 ### java
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
-### gopath
-#export GOPATH=$HOME/programming/go
-#export PATH=$PATH:$GOPATH/bin
+
 
 #### anyenv
+### deprecated:miseに移行していきたい
 export PATH="$HOME/.anyenv/bin:$PATH"
 eval "$(anyenv init -)"
 
@@ -192,6 +191,9 @@ export GOENV_ROOT="$HOME/.anyenv/envs/goenv"
 #export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 export PATH="$GOENV_ROOT/shims:$PATH"
+
+### mise
+eval "$(mise activate zsh)"
 
 #############
 # functions #
